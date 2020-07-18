@@ -1,0 +1,28 @@
+.deleteButton {
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+
+    font-size: 20px;
+    font-weight: bold;
+
+    border: none;
+
+    width: 30px;
+    height: 30px;
+    
+    margin-right: 20px;
+    margin-bottom: 20px;
+}
+
+.edit {
+    font-weight: bold;
+}
+
+.click {
+    cursor: pointer;
+}
+
+li {
+    list-style: none;
+}
