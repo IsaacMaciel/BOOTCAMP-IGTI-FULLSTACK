@@ -59,14 +59,11 @@ function renderSummarry(filterItems) {
     function validatorSummary() {
         if (filterItems.length === 0) {
             totalUsers.innerHTML = "Nenhum usuário filtrado";
-            statics.innerHTML = `Nada a ser exibido`;
             personContainer.innerHTML = "";
-
             return false;
         }
         return true;
     }
-
     if (validatorSummary()) {
         let usersAvatar = "<div>";
 
@@ -90,24 +87,20 @@ function renderSummarry(filterItems) {
         const totalFound = filterItems.length;
         totalUsers.innerHTML = `${totalFound} usuário(s) encontrado(s)`;
     }
-
-    if (filterItems.length > 0) {
-        renderStatics(filterItems);
-    }
+    renderStatics(filterItems);
 }
 function renderStatics(filterItems) {
     function validatorStatics() {
         if (filterItems.length === 0) {
+            statics.innerHTML = "Nada a ser exibido";
             genderM.innerHTML = "";
             genderF.innerHTML = "";
             totalAge.innerHTML = "";
             averageAge.innerHTML = "";
-
             return false;
         }
         return true;
     }
-
     if (validatorStatics()) {
         function calculateGenderM() {
             const total = filterItems.filter(
@@ -136,6 +129,7 @@ function renderStatics(filterItems) {
         genderF.innerHTML = `Sexo feminino: ${calculateGenderF()}`;
         totalAge.innerHTML = `Soma das idades: ${ageSum()}`;
         averageAge.innerHTML = `Média das idades: ${average()}`;
+        statics.innerHTML = "Estatísticas";
     }
 }
 function search(value) {
