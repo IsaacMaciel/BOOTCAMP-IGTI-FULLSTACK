@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="styles.css" />
+        <title>Desafio Final</title>
+    </head>
+    <body>
+        <h1 class="title">Pesquisa de usuários</h1>
+        <div class="container-search">
+            <div class="input-group">
+                <label for="fieldSearch"> Buscar </label>
+                <input type="text" name="" id="fieldSearch" />
+            </div>
+            <button disabled type="submit">Buscar</button>
+        </div>
+
+        <main class="container">
+            <div class="usersFound">
+                <h4>Nenhum usuário filtrado</h4>
+                <div class="personContainer"></div>
+            </div>
+            <div class="statics">
+                <h4>Nada a ser exibido</h4>
+
+                <p><span id="genderM"></span></p>
+                <p><span id="genderF"></span></p>
+                <p><span id="totalAge"></span></p>
+                <p><span id="averageAge"></span></p>
+            </div>
+        </main>
+
+        <script src="./api.js"></script>
+        <script src="./script.js"></script>
+    </body>
+</html>

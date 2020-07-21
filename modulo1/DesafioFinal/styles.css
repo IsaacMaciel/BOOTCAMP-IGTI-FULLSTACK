@@ -1,0 +1,48 @@
+.title{
+    text-align: center;
+}
+.container-search{
+    margin-top: 20px;
+    display: flex;
+    width: 100%;
+}
+.container-search .input-group,input[type=text]{
+    width: 95%;
+}
+
+.container-search .input-group input[type=text] {
+    padding: 10px;
+
+    border: none;
+    border-bottom: 1px solid black;
+    text-decoration: none;
+    outline: 0;
+
+}
+button {
+    background-color: rgb(104, 107, 104);;
+    color:white;
+    
+}
+
+
+.container { 
+    display: flex;
+
+}
+.container .usersFound { 
+    margin-left: 50px;
+    margin-right: 100px;
+}
+
+.card-person {
+    display: flex;
+    margin-top: 20px;
+}
+
+.card-person .card-avatar img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
