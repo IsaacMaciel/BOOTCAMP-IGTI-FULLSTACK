@@ -1,0 +1,66 @@
+.title{
+    text-align: center;
+    font-family: Roboto;
+}
+.container-search{
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+
+    width: 100%;
+}
+.container-search .input-group,input[type=text]{
+    width: 95%;
+}
+
+.container-search .input-group input[type=text] {
+    padding: 10px;
+
+    border: none;
+    border-bottom: 1px solid black;
+    text-decoration: none;
+    outline: 0;
+
+}
+button {
+    background-color: rgb(104, 107, 104);;
+    color:white;
+
+    font-family: Roboto;
+    font-weight: bold;
+
+    width: 120px;
+    height: 40px;
+
+    border-radius: 10px;
+    padding: 8px 16px;
+
+    margin-right: 10px;
+    
+}
+
+
+h4,p{
+    font-family: Roboto;
+}
+
+.container { 
+    display: flex;
+
+}
+.container .usersFound { 
+    margin-left: 50px;
+    margin-right: 100px;
+}
+
+.card-person {
+    display: flex;
+    margin-top: 20px;
+}
+
+.card-person .card-avatar img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
