@@ -30,12 +30,14 @@ function runEvents() {
     fieldSearch.addEventListener("keyup", (e) => {
         buttonCheck(e.target.value);
         inputCheck(e);
+        fieldSearch.focus();
     });
 
     buttonSearch.addEventListener("click", (e) => {
         const valueSearch = fieldSearch.value;
         fieldSearch.value = "";
         search(valueSearch);
+        fieldSearch.focus();
     });
 }
 
