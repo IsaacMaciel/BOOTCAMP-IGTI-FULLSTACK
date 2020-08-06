@@ -1,5 +1,6 @@
 const express = require("express");
 const accountRouter = require("./routes/account");
+const winston = require("winston");
 const { promises } = require("fs");
 
 const port = 3000;
@@ -7,6 +8,23 @@ const port = 3000;
 const fs = promises;
 
 global.filename = "accounts.json";
+
+const { combine, timestamp, label, printf } = winston.format;
+const myFormat = printf(({ level, message, label, timestamp }) => {
+  return `${timestamp} [${label}] ${level}: ${message}`;
+});
+global.logger = winston.createLogger({
+  level: "silly",
+  transports: [
+    new winston.transports.Console(),
+    new winston.transports.File({ filename: "my-bank-api.log" }),
+  ],
+  format: combine(
+    label({ label: "my-bank-api"}),
+    timestamp(),
+    myFormat
+  )
+});
 
 const app = express();
 app.use(express.json());
@@ -27,11 +45,11 @@ app.listen(port, async () => {
     };
     fs.writeFile(filename, JSON.stringify(initialJson))
       .then(() => {
-        console.log("Api Started and File Created!");
+        logger.info("Api Started and File Created!");
       })
       .catch((err) => {
-        console.log(err);
+        logger.error(err);
       });
   }
-  console.log(`Api rodando na porta ${port}`);
+  logger.info(`Api rodando na porta ${port}`);
 });
