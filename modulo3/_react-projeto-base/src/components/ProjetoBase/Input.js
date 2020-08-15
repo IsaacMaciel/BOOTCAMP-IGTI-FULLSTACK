@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-export default class ProjetoBase extends Component {
+export default class Input extends Component {
 
   checkDisabled = (value) => {
     if (value) {
@@ -9,23 +9,25 @@ export default class ProjetoBase extends Component {
   }
 
   render() {
-    const {labelName, input,value,disabled} = this.props;
+    const {labelName, input,value,disabled,type,style,color} = this.props;
     return (
-      <div className="row">
-        <div className="input-field col s6">
+
+        <div className={!style ? 'input-field col s3' : style}>
           <input
             value={value}
             id="first_name2"
-            type="number"
+            type={type}
             className="validate"
             onChange={input}
-            disabled={disabled}        
+            readOnly={disabled}
+            style={{color: color}}
+            step={100}        
           />
           <label className="active" for="first_name2">
             {labelName}
           </label>
         </div>
-      </div>
+
     );
   }
 }

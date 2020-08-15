@@ -1,66 +1,94 @@
-import React, { Component } from "react";
-import ProjetoBase from "./components/ProjetoBase/ProjetoBase";
+import React, { useState } from "react";
+import Input from "./components/ProjetoBase/Input";
+import Chart from "react-google-charts";
 
 import { calculateSalaryFrom } from "./helpers/salary";
 
-export default class App extends Component {
-  constructor() {
-    super();
+export default () => {
+  const [salary, setSalary] = useState(calculateSalaryFrom(1400));
 
-    this.state = {
-      fullSalary: 1000,
-      baseINSS: null,
-      discountINSS: null,
-      baseIRPF: null,
-      discountIRPF: null,
-      netSalary: null,
-    };
-  }
-
-  handleSalaryInput = (event) => {
-   this.setState({
-     fullSalary: +event.target.value,
-   })
-
+  const pieOptions = {
+    slices: [
+      {
+        color: "#2BB673",
+      },
+      {
+        color: "#d91e48",
+      },
+      {
+        color: "#007fad",
+      },
+    ],
+    legend: {
+      position: "bottom",
+      aligment: "center",
+    },
   };
 
-  componentDidUpdate = (prevsProp, prevsState) => {
-    const {fullSalary} = this.state
-
-    const {baseINSS,discountINSS,baseIRPF,discountIRPF,netSalary} = calculateSalaryFrom(fullSalary)
-
-    this.setState({
-      baseINSS,
-      discountINSS,
-      baseIRPF,
-      discountIRPF,
-      netSalary
-    })
-
-    console.log(this.state)
-  };
-
-  render() {
-    const { fullSalary,baseINSS,discountINSS,baseIRPF,discountIRPF,netSalary } = this.state;
-
-    return (
-      <>
-        <ProjetoBase
-          value={fullSalary}
+  return (
+    <div className="container">
+      <h5 className="center">Calculadora de Salário</h5>
+      <div className="row">
+        <Input
+          value={salary.fullSalary}
           labelName={"Salário Bruto"}
-          input={this.handleSalaryInput}
-        ></ProjetoBase>
-
-        <ProjetoBase disabled={true} value={baseINSS} labelName={"Base INSS"}></ProjetoBase>
-        <ProjetoBase disabled={true} value={discountINSS} labelName={"Desconto INSS"}></ProjetoBase>
-        <ProjetoBase disabled={true} value={baseIRPF} labelName={"Base IRPF"}></ProjetoBase>
-        <ProjetoBase disabled={true} value={discountIRPF} labelName={"Desconto IRPF"}></ProjetoBase>
-        <ProjetoBase
+          type={"number"}
+          style={"input-field col s6"}
+          input={(e) => setSalary(calculateSalaryFrom(+e.target.value))}
+        ></Input>
+        <Input
           disabled={true}
-          value={netSalary}
+          style={"input-field col s6"}
+          value={`R$ ${salary.netSalary} (${salary.percentNetSalary} %)`}
+          color={"#2BB673"}
           labelName={"Salário Líquido"}
-        ></ProjetoBase>
-      </>
-    );
-  }
-}
+        ></Input>
+      </div>
+
+      <div className="row">
+        <Input
+          disabled={true}
+          type={"text"}
+          value={`R$ ${salary.baseINSS}`}
+          labelName={"Base INSS"}
+        ></Input>
+        <Input
+          disabled={true}
+          type={"text"}
+          color={"#d91e48"}
+          value={`R$ ${salary.discountINSS} (${salary.percentINSS} %)`}
+          labelName={"Desconto INSS"}
+        ></Input>
+
+        <Input
+          disabled={true}
+          type={"text"}
+          value={`R$ ${salary.baseIRPF}`}
+          color={"#007fad"}
+          labelName={"Base IRPF"}
+        ></Input>
+        <Input
+          disabled={true}
+          type={"text"}
+          value={`R$ ${salary.discountIRPF} (${salary.percentIRPF} %)`}
+          labelName={"Desconto IRPF"}
+        ></Input>
+      </div>
+
+      <Chart
+        width={"1000px"}
+        height={"500px"}
+        chartType="PieChart"
+        loader={<div>Carregando...</div>}
+        data={[
+          ["Task", "Hours per Day"],
+          ["Salário Liquído", salary.netSalary],
+          ["Desconto INSS", salary.discountINSS],
+          ["Desconto IRPF", salary.discountIRPF],
+        ]}
+        options={pieOptions}
+        rootProps={{ "data-testid": "1" }}
+      />
+    </div>
+  );
+};

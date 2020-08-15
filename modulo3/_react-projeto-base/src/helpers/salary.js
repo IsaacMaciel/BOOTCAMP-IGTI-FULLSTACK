@@ -1,3 +1,10 @@
+const percent = (total, part) => {
+    let percent = (part * 100) / total;
+    percent = percent.toFixed(2);
+
+    return +percent;
+};
+
 const INSS_TABLE = [
     {
       id: 1,
@@ -91,13 +98,21 @@ const INSS_TABLE = [
     const discountIRPF = calculateDiscountIRPF(baseIRPF);
   
     const netSalary = baseINSS - discountINSS - discountIRPF;
+
+    const percentINSS = percent(fullSalary,discountINSS);
+    const percentIRPF = percent(fullSalary,discountIRPF);
+    const percentNetSalary = percent(fullSalary,netSalary);
   
     return {
+      fullSalary,
       baseINSS,
       discountINSS,
       baseIRPF,
       discountIRPF,
       netSalary,
+      percentINSS,
+      percentIRPF,
+      percentNetSalary,
     };
   }
   
