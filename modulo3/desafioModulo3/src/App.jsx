@@ -22,27 +22,31 @@ export default function App() {
   }, [amount, juros, month]);
 
   return (
-    <div>
-      <Input
-        labelName="Montante Inicial"
-        value={amount}
-        step={100}
-        input={(e) => setAmount(+e.target.value)}
-      />
-      <Input
-        labelName="Juros"
-        value={juros}
-        step={0.1}
-        input={(e) => setJuros(+e.target.value)}
-      />
-      <Input
-        labelName="Meses"
-        value={month}
-        step={1}
-        input={(e) => setMonth(+e.target.value)}
-      />
+    <>
+      <div className="container">
+        <div className="row">
+          <Input
+            labelName="Montante Inicial"
+            value={amount}
+            step={100}
+            input={(e) => setAmount(+e.target.value)}
+          />
+          <Input
+            labelName="Juros"
+            value={juros}
+            step={0.1}
+            input={(e) => setJuros(+e.target.value)}
+          />
+          <Input
+            labelName="Meses"
+            value={month}
+            step={1}
+            input={(e) => setMonth(+e.target.value)}
+          />
+        </div>
+      </div>
 
       <Card result={result} />
-    </div>
+    </>
   );
 }
