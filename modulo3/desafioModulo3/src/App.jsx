@@ -6,7 +6,7 @@ import Card from "./components/Card";
 
 export default function App() {
   const [amount, setAmount] = useState(1000);
-  const [juros, setJuros] = useState(3);
+  const [juros, setJuros] = useState(-5);
   const [month, setMonth] = useState(5);
   const [result, setResult] = useState([]);
 

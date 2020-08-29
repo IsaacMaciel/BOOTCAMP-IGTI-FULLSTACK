@@ -6,17 +6,24 @@ function formatPercentage(value) {
   return stringValue.replace(".", ",") + "%";
 }
 
-function formatAmount(value) {
-  let stringValue = value.toFixed(2);
+// function formatAmount(value) {
+//   let formated = formatter.format(value)
 
-  stringValue = stringValue.replace(".", ",");
-  return "R$" + stringValue;
-}
+//   // stringValue = stringValue.replace(".", ",");
+//   return "R$" + formated;
+// }
 
 function formatNumber(value) {
-  const stringValue = value.toFixed(2);
+  let formated = formatter.format(value);
 
-  return stringValue.replace(".", ",");
+  formated = "R$ " + formated;
+
+  return {
+    formated,
+    value
+  }
+
+  
 }
 
-module.exports = { formatPercentage, formatNumber, formatAmount };
+module.exports = { formatPercentage, formatNumber };

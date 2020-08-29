@@ -3,8 +3,9 @@ import React from "react";
 import {
   formatNumber,
   formatPercentage,
-  formatAmount,
 } from "../helpers/formatNumber";
+import Profit from "./Profit";
+import Amount from "./Amount";
 
 export default function Card({ result }) {
   const array = result;
@@ -16,20 +17,17 @@ export default function Card({ result }) {
           <div className="card col s2" style={{ marginRight: "10px" }}>
             <div
               className="card-header"
-              style={{ fontWeight: "bold", fontSize: "16px" }}
+              style={{ fontWeight: "bold", fontSize: "24px",textAlign:"center" }}
             >
-              <span>{month}</span>
+              <span>{`Mês: ${month}`}</span>
             </div>
-            <div className="card-content">
+            <div className="card-content" style={{textAlign:"center", fontSize:"20px"}}>
               <div>
                 <div>
-                  <span>{formatAmount(amount)}</span>
+                 
+                  <Amount amount={formatNumber(amount)}t/>
                 </div>
-
-                <div>
-                  <span>{+formatNumber(profit) <= 0 ? 'Prejuízo: ': 'Lucro: '}</span>
-                  <span>{formatNumber(profit)}</span>
-                </div>
+                <Profit profit={formatNumber(profit)} />
                 <div>
                   <span>{formatPercentage(percentAcumulator)}</span>
                 </div>
